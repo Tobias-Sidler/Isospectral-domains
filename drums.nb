@@ -1,0 +1,539 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     21515,        531]
+NotebookOptionsPosition[     20560,        509]
+NotebookOutlinePosition[     20959,        525]
+CellTagsIndexPosition[     20916,        522]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Row", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Show", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"D1", "[", "1", "]"}], "=", 
+          RowBox[{"Graphics", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"EdgeForm", "[", "]"}], ",", 
+             RowBox[{"Opacity", "[", "0", "]"}], ",", 
+             RowBox[{
+              RowBox[{"region", "[", "1", "]"}], "=", 
+              RowBox[{"Polygon", "[", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", "0"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", "4"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"1", ",", "5"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"2", ",", "4"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"1", ",", "3"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"2", ",", "2"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"2", ",", "0"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"1", ",", "1"}], "}"}]}], "}"}], "]"}]}]}], "}"}], 
+           "]"}]}], "}"}], ",", 
+        RowBox[{"Frame", "->", "True"}], ",", 
+        RowBox[{"ImageSize", "->", "500"}]}], "]"}], ",", 
+      RowBox[{"Show", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"D2", "[", "2", "]"}], "=", 
+          RowBox[{"Graphics", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"EdgeForm", "[", "]"}], ",", 
+             RowBox[{"Opacity", "[", "0", "]"}], ",", 
+             RowBox[{
+              RowBox[{"region", "[", "2", "]"}], "=", 
+              RowBox[{"Polygon", "[", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", "0"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", "2"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"1", ",", "3"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", "4"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"2", ",", "4"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"3", ",", "3"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"1", ",", "1"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"2", ",", "0"}], "}"}]}], "}"}], "]"}]}]}], "}"}], 
+           "]"}]}], "}"}], ",", 
+        RowBox[{"Frame", "->", "True"}], ",", 
+        RowBox[{"ImageSize", "->", "500"}]}], "]"}]}], "}"}], "]"}], ";"}], 
+  " ", 
+  RowBox[{"(*", 
+   RowBox[{"Draw", " ", "the", " ", "two", " ", "drum", " ", "domains"}], " ",
+    "*)"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DD1", " ", "=", " ", 
+   RowBox[{"BoundaryDiscretizeGraphics", "[", 
+    RowBox[{
+     RowBox[{"D1", "[", "1", "]"}], ",", " ", 
+     RowBox[{"PlotTheme", "->", "\"\<ThickLines\>\""}]}], "]"}]}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Make", " ", "a", " ", "discrete", " ", "mesh"}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"DD2", " ", "=", " ", 
+   RowBox[{"BoundaryDiscretizeGraphics", "[", 
+    RowBox[{
+     RowBox[{"D2", "[", "2", "]"}], ",", " ", 
+     RowBox[{"PlotTheme", " ", "->", "\"\<ThickLines\>\""}]}], "]"}]}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"Make", " ", "a", " ", "discrete", " ", "mesh"}], "*)"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"ev1", ",", "ef1"}], "}"}], "=", 
+    RowBox[{"NDEigensystem", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{"Laplacian", "[", 
+          RowBox[{
+           RowBox[{"u", "[", 
+            RowBox[{"x", ",", "y"}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "y"}], "}"}]}], "]"}]}], ",", 
+        RowBox[{"DirichletCondition", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"u", "[", 
+            RowBox[{"x", ",", "y"}], "]"}], "==", "0"}], ",", "True"}], 
+         "]"}]}], "}"}], ",", 
+      RowBox[{"u", "[", 
+       RowBox[{"x", ",", "y"}], "]"}], ",", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"x", ",", "y"}], "}"}], "\[Element]", "DD1"}], ",", "10"}], 
+     "]"}]}], ";"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{
+   "Calculate", " ", "the", " ", "smallest", " ", "6", " ", "eigenvalues", 
+    " ", "and", " ", "eigenfunctions", " ", "on", " ", "the", " ", "first", 
+    " ", "domain"}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"ev2", ",", "ef2"}], "}"}], "=", 
+    RowBox[{"NDEigensystem", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{"Laplacian", "[", 
+          RowBox[{
+           RowBox[{"u", "[", 
+            RowBox[{"x", ",", "y"}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "y"}], "}"}]}], "]"}]}], ",", 
+        RowBox[{"DirichletCondition", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"u", "[", 
+            RowBox[{"x", ",", "y"}], "]"}], "==", "0"}], ",", "True"}], 
+         "]"}]}], "}"}], ",", 
+      RowBox[{"u", "[", 
+       RowBox[{"x", ",", "y"}], "]"}], ",", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"x", ",", "y"}], "}"}], "\[Element]", "DD2"}], ",", "10"}], 
+     "]"}]}], ";"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{
+   "Calculate", " ", "the", " ", "smallest", " ", "6", " ", "eigenvalues", 
+    " ", "and", " ", "eigenfunctions", " ", "on", " ", "the", " ", "second", 
+    " ", "domain"}], " ", "*)"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"ev1", "/", "ev2"}], "\[IndentingNewLine]", 
+ RowBox[{"ev1", "                 ", 
+  RowBox[{"(*", 
+   RowBox[{"Compare", " ", "the", " ", "eigenvalues"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"ev2", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  StyleBox[
+   RowBox[{"For", "[", 
+    RowBox[{
+     RowBox[{"i", "=", "1"}], ",", " ", 
+     RowBox[{"i", "<", "7"}], ",", " ", 
+     RowBox[{"i", "++"}], ",", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Show", "[", 
+        RowBox[{"DD1", ",", " ", 
+         RowBox[{"ContourPlot", "[", 
+          RowBox[{
+           RowBox[{"ef1", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], ",", " ", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"x", ",", "y"}], "}"}], " ", "\[Element]", " ", "DD1"}], 
+           ",", " ", 
+           RowBox[{"Axes", " ", "->", " ", "None"}], ",", " ", 
+           RowBox[{"Frame", "->", "None"}], ",", " ", 
+           RowBox[{"AspectRatio", "\[Rule]", "Automatic"}], ",", " ", 
+           RowBox[{"ColorFunction", "\[Rule]", 
+            RowBox[{"Function", "[", 
+             RowBox[{"f", ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Opacity", "[", "0.75", "]"}], ",", " ", 
+                RowBox[{
+                 RowBox[{"ColorData", "[", "\"\<TemperatureMap\>\"", "]"}], 
+                 "[", "f", "]"}]}], "}"}]}], "]"}]}]}], "]"}], ",", " ", 
+         RowBox[{"ImageSize", "->", "Automatic"}]}], "]"}], "//", "Print"}], 
+      " ", ";", " ", 
+      RowBox[{"(*", 
+       RowBox[{
+       "Draw", " ", "first", " ", "6", " ", "eigenfunctions", " ", "of", " ", 
+        "domain", " ", "1"}], "*)"}], "\[IndentingNewLine]", " ", 
+      RowBox[{
+       RowBox[{"Show", "[", 
+        RowBox[{"DD2", ",", " ", 
+         RowBox[{"ContourPlot", "[", 
+          RowBox[{
+           RowBox[{"ef2", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], ",", " ", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"x", ",", "y"}], "}"}], " ", "\[Element]", " ", "DD2"}], 
+           ",", " ", 
+           RowBox[{"Axes", " ", "->", " ", "None"}], ",", " ", 
+           RowBox[{"Frame", "->", "None"}], ",", " ", 
+           RowBox[{"AspectRatio", "\[Rule]", "Automatic"}], ",", " ", 
+           RowBox[{"ColorFunction", "\[Rule]", 
+            RowBox[{"Function", "[", 
+             RowBox[{"f", ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Opacity", "[", "0.75", "]"}], ",", " ", 
+                RowBox[{
+                 RowBox[{"ColorData", "[", "\"\<TemperatureMap\>\"", "]"}], 
+                 "[", "f", "]"}]}], "}"}]}], "]"}]}]}], "]"}], ",", " ", 
+         RowBox[{"ImageSize", "->", "Automatic"}]}], "]"}], "//", 
+       "Print"}]}]}], " ", 
+    RowBox[{"(*", 
+     RowBox[{
+     "Draw", " ", "first", " ", "6", " ", "eigenfunctions", " ", "of", " ", 
+      "domain", " ", "2"}], "*)"}], "\[IndentingNewLine]", "]"}], "Code"], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Show", "[", 
+   RowBox[{"DD1", ",", 
+    RowBox[{"ContourPlot", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"ef1", "[", 
+        RowBox[{"[", "2", "]"}], "]"}], " ", "==", " ", "0"}], ",", "  ", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"x", ",", "y"}], "}"}], "\[Element]", "DD1"}], ",", 
+      RowBox[{"Axes", "->", "None"}], ",", 
+      RowBox[{"Frame", "->", "None"}], ",", 
+      RowBox[{"AspectRatio", "->", "Automatic"}], ",", 
+      RowBox[{"ContourStyle", "->", 
+       RowBox[{"{", 
+        RowBox[{"{", " ", 
+         RowBox[{"Thick", ",", "Blue"}], "}"}], "}"}]}]}], "]"}], ",", 
+    RowBox[{"ContourPlot", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"ef1", "[", 
+        RowBox[{"[", "4", "]"}], "]"}], " ", "==", " ", "0"}], ",", " ", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"x", ",", "y"}], "}"}], "\[Element]", "DD1"}], ",", 
+      RowBox[{"Axes", "->", "None"}], ",", 
+      RowBox[{"Frame", "->", "None"}], ",", 
+      RowBox[{"AspectRatio", "->", "Automatic"}], ",", 
+      RowBox[{"ContourStyle", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"{", 
+         RowBox[{"Thick", ",", "Red"}], "}"}], "}"}]}], ",", " ", 
+      RowBox[{"ImageSize", "->", "Automatic"}]}], "]"}]}], "]"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{
+   "draw", " ", "node", " ", "of", " ", "2", "nd", " ", "and", " ", "4", "th",
+     " ", "eigenfunction", " ", "on", " ", "domain", " ", "1"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Show", "[", 
+   RowBox[{"DD2", ",", 
+    RowBox[{"ContourPlot", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"ef2", "[", 
+        RowBox[{"[", "2", "]"}], "]"}], " ", "==", " ", "0"}], ",", "  ", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"x", ",", "y"}], "}"}], "\[Element]", "DD2"}], ",", 
+      RowBox[{"Axes", "->", "None"}], ",", 
+      RowBox[{"Frame", "->", "None"}], ",", 
+      RowBox[{"AspectRatio", "->", "Automatic"}], ",", 
+      RowBox[{"ContourStyle", "->", 
+       RowBox[{"{", 
+        RowBox[{"{", " ", 
+         RowBox[{"Thick", ",", "Blue"}], "}"}], "}"}]}]}], "]"}], ",", 
+    RowBox[{"ContourPlot", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"ef2", "[", 
+        RowBox[{"[", "4", "]"}], "]"}], " ", "==", " ", "0"}], ",", " ", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"x", ",", "y"}], "}"}], "\[Element]", "DD2"}], ",", 
+      RowBox[{"Axes", "->", "None"}], ",", 
+      RowBox[{"Frame", "->", "None"}], ",", 
+      RowBox[{"AspectRatio", "->", "Automatic"}], ",", 
+      RowBox[{"ContourStyle", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"{", 
+         RowBox[{"Thick", ",", "Red"}], "}"}], "}"}]}], ",", " ", 
+      RowBox[{"ImageSize", "->", "Automatic"}]}], "]"}]}], "]"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{
+   "draw", " ", "node", " ", "of", " ", "2", "nd", " ", "and", " ", "5", "th",
+     " ", "eigenfunction", " ", "on", " ", "domain", " ", "2"}], "*)"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Show", "[", 
+   RowBox[{"DD1", ",", 
+    RowBox[{"ContourPlot", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"ef1", "[", 
+        RowBox[{"[", "2", "]"}], "]"}], " ", "==", " ", "0"}], ",", "  ", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"x", ",", "y"}], "}"}], "\[Element]", "DD1"}], ",", 
+      RowBox[{"Axes", "->", "None"}], ",", 
+      RowBox[{"Frame", "->", "None"}], ",", 
+      RowBox[{"AspectRatio", "->", "Automatic"}], ",", 
+      RowBox[{"ContourStyle", "->", 
+       RowBox[{"{", 
+        RowBox[{"{", " ", 
+         RowBox[{"Thick", ",", "Blue"}], "}"}], "}"}]}]}], "]"}], ",", 
+    RowBox[{"ContourPlot", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"ef1", "[", 
+        RowBox[{"[", "5", "]"}], "]"}], " ", "==", " ", "0"}], ",", " ", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"x", ",", "y"}], "}"}], "\[Element]", "DD1"}], ",", 
+      RowBox[{"Axes", "->", "None"}], ",", 
+      RowBox[{"Frame", "->", "None"}], ",", 
+      RowBox[{"AspectRatio", "->", "Automatic"}], ",", 
+      RowBox[{"ContourStyle", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"{", 
+         RowBox[{"Thick", ",", "Red"}], "}"}], "}"}]}], ",", " ", 
+      RowBox[{"ImageSize", "->", "Automatic"}]}], "]"}]}], "]"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{
+   "draw", " ", "node", " ", "of", " ", "2", "nd", " ", "and", " ", "4", "th",
+     " ", "eigenfunction", " ", "on", " ", "domain", " ", "1"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Show", "[", 
+   RowBox[{"DD2", ",", 
+    RowBox[{"ContourPlot", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"ef2", "[", 
+        RowBox[{"[", "2", "]"}], "]"}], " ", "==", " ", "0"}], ",", "  ", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"x", ",", "y"}], "}"}], "\[Element]", "DD2"}], ",", 
+      RowBox[{"Axes", "->", "None"}], ",", 
+      RowBox[{"Frame", "->", "None"}], ",", 
+      RowBox[{"AspectRatio", "->", "Automatic"}], ",", 
+      RowBox[{"ContourStyle", "->", 
+       RowBox[{"{", 
+        RowBox[{"{", " ", 
+         RowBox[{"Thick", ",", "Blue"}], "}"}], "}"}]}]}], "]"}], ",", 
+    RowBox[{"ContourPlot", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"ef2", "[", 
+        RowBox[{"[", "5", "]"}], "]"}], " ", "==", " ", "0"}], ",", " ", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"x", ",", "y"}], "}"}], "\[Element]", "DD2"}], ",", 
+      RowBox[{"Axes", "->", "None"}], ",", 
+      RowBox[{"Frame", "->", "None"}], ",", 
+      RowBox[{"AspectRatio", "->", "Automatic"}], ",", 
+      RowBox[{"ContourStyle", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"{", 
+         RowBox[{"Thick", ",", "Red"}], "}"}], "}"}]}], ",", " ", 
+      RowBox[{"ImageSize", "->", "Automatic"}]}], "]"}]}], "]"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{
+   "draw", " ", "node", " ", "of", " ", "2", "nd", " ", "and", " ", "5", "th",
+     " ", "eigenfunction", " ", "on", " ", "domain", " ", "2"}], "*)"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.843382080053553*^9, 3.843382099815237*^9}, {
+   3.843382187428687*^9, 3.843382314849001*^9}, {3.843382640689062*^9, 
+   3.843382741281629*^9}, {3.8433827853096333`*^9, 3.8433828006055665`*^9}, {
+   3.8433828489528713`*^9, 3.843382854331271*^9}, {3.8433829670986357`*^9, 
+   3.8433830091920867`*^9}, {3.8433830431736975`*^9, 3.843383236670787*^9}, {
+   3.8433833396576786`*^9, 3.8433834480321207`*^9}, {3.843383492976581*^9, 
+   3.8433835383000426`*^9}, {3.8433839345277147`*^9, 3.843383977623679*^9}, {
+   3.8433840196063576`*^9, 3.8433841251455746`*^9}, {3.843384192141182*^9, 
+   3.84338421154454*^9}, {3.8433842886789207`*^9, 3.8433843365096436`*^9}, {
+   3.843384382315369*^9, 3.8433843891706448`*^9}, {3.84338443293686*^9, 
+   3.8433844356474347`*^9}, {3.8433845295195093`*^9, 3.843384553913323*^9}, {
+   3.8433852423606386`*^9, 3.8433852512300043`*^9}, {3.843385305960025*^9, 
+   3.843385357538642*^9}, {3.8433854018831186`*^9, 3.843385406354751*^9}, {
+   3.8433854633176827`*^9, 3.8433855090222235`*^9}, {3.8433855724464254`*^9, 
+   3.8433856012856417`*^9}, {3.8433856851942997`*^9, 
+   3.8433857253517604`*^9}, {3.8433858256048346`*^9, 3.843385889055227*^9}, {
+   3.843386190492261*^9, 3.843386309339284*^9}, 3.843386347733857*^9, {
+   3.843386382090234*^9, 3.8433864704426346`*^9}, {3.84338650661695*^9, 
+   3.8433865252091103`*^9}, {3.843386585086129*^9, 3.8433865911840744`*^9}, {
+   3.8433867167268724`*^9, 3.8433867672844105`*^9}, {3.84338690628265*^9, 
+   3.843386914884672*^9}, {3.84338699384663*^9, 3.8433870429397516`*^9}, {
+   3.8433871126225348`*^9, 3.843387205671425*^9}, {3.843387309774021*^9, 
+   3.8433873671318603`*^9}, {3.8433874118343244`*^9, 3.843387416544331*^9}, {
+   3.8433877344691043`*^9, 3.8433877398350782`*^9}, {3.843387794781218*^9, 
+   3.8433877963471465`*^9}, {3.843387844860052*^9, 3.8433878812961907`*^9}, {
+   3.8433880749691973`*^9, 3.843388136112611*^9}, {3.8433882678671045`*^9, 
+   3.843388299253217*^9}, {3.84338836282593*^9, 3.843388367750576*^9}, {
+   3.8433884330849953`*^9, 3.8433884416053114`*^9}, {3.8433884772046556`*^9, 
+   3.8433884786346073`*^9}, {3.8433885288676825`*^9, 3.8433885611626434`*^9}, 
+   3.843388671515277*^9, {3.843388851621797*^9, 3.8433888601825233`*^9}, {
+   3.8433889174536805`*^9, 3.8433889189723816`*^9}, {3.843388968813239*^9, 
+   3.8433889812002287`*^9}, {3.843389044155918*^9, 3.8433890980026674`*^9}, {
+   3.8433891411387186`*^9, 3.8433891432367854`*^9}},
+ CellLabel->
+  "In[146]:=",ExpressionUUID->"5755c3ff-2493-4ba0-ab14-d6736ded7a13"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Set", "shape", 
+   "\"Lists \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"vals\\\", \\\",\\\", \
+\\\"funs\\\"}], \\\"}\\\"}]\\) and \\!\\(\\*RowBox[{\\\"DEigensystem\\\", \
+\\\"[\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{RowBox[{\\\"-\\\", \
+RowBox[{SuperscriptBox[\\\"u\\\", TagBox[RowBox[{\\\"(\\\", \
+RowBox[{\\\"0\\\", \\\",\\\", \\\"2\\\"}], \\\")\\\"}], Derivative], \
+Rule[MultilineFunction, None]], \\\"[\\\", RowBox[{\\\"x\\\", \\\",\\\", \
+\\\"y\\\"}], \\\"]\\\"}]}], \\\"-\\\", RowBox[{SuperscriptBox[\\\"u\\\", \
+TagBox[RowBox[{\\\"(\\\", RowBox[{\\\"2\\\", \\\",\\\", \\\"0\\\"}], \
+\\\")\\\"}], Derivative], Rule[MultilineFunction, None]], \\\"[\\\", RowBox[{\
+\\\"x\\\", \\\",\\\", \\\"y\\\"}], \\\"]\\\"}]}], \\\",\\\", \
+RowBox[{\\\"DirichletCondition\\\", \\\"[\\\", \
+RowBox[{RowBox[{RowBox[{\\\"u\\\", \\\"[\\\", RowBox[{\\\"x\\\", \\\",\\\", \
+\\\"y\\\"}], \\\"]\\\"}], \\\"\[Equal]\\\", \\\"0\\\"}], \\\",\\\", \
+\\\"True\\\"}], \\\"]\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"u\\\", \
+\\\"[\\\", RowBox[{\\\"x\\\", \\\",\\\", \\\"y\\\"}], \\\"]\\\"}], \\\",\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"x\\\", \\\",\\\", \\\"y\\\"}], \\\"}\\\
+\"}], \\\"\[Element]\\\", RowBox[{\\\"DD1\\\", \\\"[\\\", \\\"]\\\"}]}], \
+\\\",\\\", \\\"6\\\"}], \\\"]\\\"}]\\) are not the same shape.\"", 2, 57, 8, 
+   21788381502872182632, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{
+  3.843382860763299*^9, {3.843383000310151*^9, 
+   3.843383033289296*^9}},ExpressionUUID->"c03fba87-48bc-463f-9eb8-\
+4b84d0f819c0"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{3.8433827066476393`*^9},
+ NumberMarks->False,
+ CellLabel->
+  "In[156]:=",ExpressionUUID->"8f2b0467-aaf9-4cc1-98d8-598149f9b894"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{3.8433830258275433`*^9},
+ NumberMarks->False,
+ CellLabel->
+  "In[157]:=",ExpressionUUID->"84c395e2-7b51-4816-a7e8-7c2cde67312a"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.843383030003991*^9, 3.843383030003991*^9}},
+ CellLabel->
+  "In[158]:=",ExpressionUUID->"f596dadf-2028-47e7-a19f-37f217147034"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{3.8433830289043975`*^9},
+ NumberMarks->False,
+ CellLabel->
+  "In[159]:=",ExpressionUUID->"745ac2cc-d7cd-41f7-b940-b2fd775c332f"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.8433830271033983`*^9, 3.843383027105397*^9}},
+ CellLabel->
+  "In[160]:=",ExpressionUUID->"6a34505b-2fee-4da0-867f-43068cbd22ab"]
+},
+WindowSize->{2560, 1357},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"12.3 for Microsoft Windows (64-bit) (July 9, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"c1a22cb1-8734-40e8-8891-b16781d6a40d"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 17440, 426, 530, "Input",ExpressionUUID->"5755c3ff-2493-4ba0-ab14-d6736ded7a13"],
+Cell[18023, 450, 1632, 28, 29, "Message",ExpressionUUID->"c03fba87-48bc-463f-9eb8-4b84d0f819c0"]
+}, Open  ]],
+Cell[19670, 481, 174, 4, 29, "Input",ExpressionUUID->"8f2b0467-aaf9-4cc1-98d8-598149f9b894"],
+Cell[19847, 487, 174, 4, 29, "Input",ExpressionUUID->"84c395e2-7b51-4816-a7e8-7c2cde67312a"],
+Cell[20024, 493, 175, 3, 29, "Input",ExpressionUUID->"f596dadf-2028-47e7-a19f-37f217147034"],
+Cell[20202, 498, 174, 4, 29, "Input",ExpressionUUID->"745ac2cc-d7cd-41f7-b940-b2fd775c332f"],
+Cell[20379, 504, 177, 3, 29, "Input",ExpressionUUID->"6a34505b-2fee-4da0-867f-43068cbd22ab"]
+}
+]
+*)
+
