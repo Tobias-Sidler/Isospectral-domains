@@ -1,0 +1,44 @@
+Row[{Show[{D1[1] = Graphics[{EdgeForm[], Opacity[0], region[1] = 
+         Polygon[{{0, 0}, {0, 4}, {1, 5}, {2, 4}, {1, 3}, {2, 2}, {2, 0}, {1, 1}}]}]}, Frame -> True, ImageSize -> 500], 
+   Show[{D2[2] = 
+      Graphics[{EdgeForm[], Opacity[0], region[2] = 
+         Polygon[{{0, 0}, {0, 2}, {1, 3}, {0, 4}, {2, 4}, {3, 3}, {1, 1}, {2, 0}}]}]}, Frame -> True, ImageSize -> 500]}]; (*Draw the two drum domains *)
+
+
+DD1 = BoundaryDiscretizeGraphics[D1[1], PlotTheme -> "ThickLines"] (*Make a discrete mesh*)
+DD2 = BoundaryDiscretizeGraphics[D2[2], PlotTheme -> "ThickLines"] (*Make a discrete mesh*)
+
+
+{ev1, ef1} = NDEigensystem[{-Laplacian[u[x, y], {x, y}], DirichletCondition[u[x, y] == 0, True]}, u[x, y], {x, y} \[Element] DD1, 10]; (*Calculate the smallest 10 eigenvalues and eigenfunctions on the first domain *)
+{ev2, ef2} = NDEigensystem[{-Laplacian[u[x, y], {x, y}], DirichletCondition[u[x, y] == 0, True]}, u[x, y], {x, y} \[Element] DD2, 10]; (*Calculate the smallest 10 eigenvalues and eigenfunctions on the second domain*)
+
+ev1/ev2
+ev1                 (*Compare the eigenvalues*)
+ev2
+
+
+
+For[i = 1, i < 7, i++, 
+ Show[DD1, ContourPlot[ef1[[i]], {x, y} \[Element] DD1, Axes -> None, Frame -> None, AspectRatio -> Automatic, ColorFunction -> Function[f, {Opacity[0.75], ColorData["TemperatureMap"][f]}]], ImageSize -> Automatic] // Print ; (*Draw first 6 eigenfunctions of domain 1*)
+ Show[DD2, ContourPlot[ef2[[i]], {x, y} \[Element] DD2, Axes -> None, Frame -> None, AspectRatio -> Automatic, ColorFunction -> Function[f, {Opacity[0.75], ColorData["TemperatureMap"][f]}]], ImageSize -> Automatic] // Print (*Draw first 6 eigenfunctions of domain 2*)
+ ]
+
+Show[DD1, 
+ ContourPlot[ef1[[2]] == 0,  {x, y} \[Element] DD1, Axes -> None, Frame -> None, AspectRatio -> Automatic, ContourStyle -> {{ Thick, Blue}}], 
+ContourPlot[ef1[[4]] == 0, {x, y} \[Element] DD1, Axes -> None, Frame -> None, AspectRatio -> Automatic, ContourStyle -> {{Thick, Red}}, ImageSize -> Automatic]] (*draw node of 2nd and 4th eigenfunction on domain 1*)
+
+
+Show[DD2, 
+ ContourPlot[ef2[[2]] == 0,  {x, y} \[Element] DD2, Axes -> None, Frame -> None, AspectRatio -> Automatic, ContourStyle -> {{ Thick, Blue}}], 
+ContourPlot[ef2[[4]] == 0, {x, y} \[Element] DD2, Axes -> None, Frame -> None, AspectRatio -> Automatic, ContourStyle -> {{Thick, Red}}, ImageSize -> Automatic]] (*draw node of 2nd and 5th eigenfunction on domain 2*)
+
+Show[DD1, 
+ ContourPlot[ef1[[2]] == 0,  {x, y} \[Element] DD1, Axes -> None, Frame -> None, AspectRatio -> Automatic, ContourStyle -> {{ Thick, Blue}}], 
+ContourPlot[ef1[[5]] == 0, {x, y} \[Element] DD1, Axes -> None, Frame -> None, AspectRatio -> Automatic, ContourStyle -> {{Thick, Red}}, ImageSize -> Automatic]] (*draw node of 2nd and 4th eigenfunction on domain 1*)
+
+
+Show[DD2, 
+ ContourPlot[ef2[[2]] == 0,  {x, y} \[Element] DD2, Axes -> None, Frame -> None, AspectRatio -> Automatic, ContourStyle -> {{ Thick, Blue}}], 
+ ContourPlot[ef2[[5]] == 0, {x, y} \[Element] DD2, Axes -> None, Frame -> None, AspectRatio -> Automatic, ContourStyle -> {{Thick, Red}}, ImageSize -> Automatic]] (*draw node of 2nd and 5th eigenfunction on domain 2*)
+
+
